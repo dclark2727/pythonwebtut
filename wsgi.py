@@ -1,4 +1,6 @@
-from __init__ import create_app
+import sys
+
+from sys import create_app
 
 
 app = create_app()
