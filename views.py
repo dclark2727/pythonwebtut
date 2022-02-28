@@ -1,7 +1,7 @@
 from flask import Blueprint, flash, jsonify, render_template, request
 from flask_login import login_required, current_user
 from models import Note
-from sqlalchemy import db
+from __init__ import db
 import json
 
 views = Blueprint('views', __name__)
