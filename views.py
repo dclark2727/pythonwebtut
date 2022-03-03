@@ -7,21 +7,21 @@ import json
 
 views = Blueprint('views', __name__)
 
-@views.route('/', methods=['GET', 'POST'])
-@login_required
-def home():
-    if request.method == 'POST':
-        note = request.form.get('note')
+# @views.route('/', methods=['GET', 'POST'])
+# @login_required
+# def home():
+#     if request.method == 'POST':
+#         note = request.form.get('note')
 
-        if len(note) < 1:
-            flash('Note is too short.', category='error')
-        else:
-            newNote = Note(data = note, userID=current_user.id)
-            db.session.add(newNote)
-            db.session.commit()
-            flash('Note added!', category='success')
+#         if len(note) < 1:
+#             flash('Note is too short.', category='error')
+#         else:
+#             newNote = Note(data = note, userID=current_user.id)
+#             db.session.add(newNote)
+#             db.session.commit()
+#             flash('Note added!', category='success')
 
-    return render_template("/home.html", user=current_user)
+#     return render_template("/home.html", user=current_user)
 
 @views.route('/delete-note',methods=['POST'])
 def delete_note():
@@ -34,3 +34,4 @@ def delete_note():
             db.session.commit()
             
     return jsonify({})
+
