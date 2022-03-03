@@ -1,4 +1,3 @@
-from logging.config import _LoggerConfiguration
 from __init__ import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
@@ -16,12 +15,3 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     firstName = db.Column(db.String(150))
     notes = db.relationship('Note')
-
-class Shop(db.model):
-     id = db.Column(db.Integer, primary_key = True)
-     name = db.Column(db.String(150))
-     image = db.Column(db.String(150))
-     location = db.Column(db.String(150))
-     rating = db.Column(db.String(150))
-     reviews = db.Column(db.String(150))
-     tags = db.Column(db.String(150))
