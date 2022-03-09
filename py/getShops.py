@@ -22,5 +22,3 @@ def getShops():
     return shops
 
   
-
-  
