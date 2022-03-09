@@ -44,10 +44,4 @@ def delete_note():
             
     return jsonify({})
 
-print(shops[0][0])
-print(shops[0][1])
-print(shops[0][2])
-print(shops[0][3])
-print(shops[0][4])
-print(shops[0][5])
-print(shops[0][6])
+
