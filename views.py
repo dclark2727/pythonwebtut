@@ -27,9 +27,9 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    shops = getShops.getShops()
+    data = getShops.getShops()
   
-    return render_template("/home.html", user=current_user, shopData = shops)
+    return render_template("/home.html", user=current_user, shopData = data)
 
 
 @views.route('/get-sdata',methods=['POST'])
