@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from models import Note
 from __init__ import db
 import json
+from py import getShops
 
 
 views = Blueprint('views', __name__)
@@ -26,13 +27,12 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    if request.method == "POST":
-        flash("Post")
-    
-    return render_template("/home.html", user=current_user)
+    shops = getShops()
+  
+    return render_template("/home.html", user=current_user, shopData = shops)
 
 
-@views.route('/delete-note',methods=['POST'])
+@views.route('/get-sdata',methods=['POST'])
 def delete_note():
     note = json.loads(request.data)
     noteId = note['noteId']
@@ -40,7 +40,14 @@ def delete_note():
     if note:
         if note.userID == current_user.id:
             db.session.delete(note)
-            db.session.commit()
+            db.session.commit() 
             
     return jsonify({})
 
+print(shops[0][0])
+print(shops[0][1])
+print(shops[0][2])
+print(shops[0][3])
+print(shops[0][4])
+print(shops[0][5])
+print(shops[0][6])

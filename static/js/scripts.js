@@ -7,3 +7,11 @@
 // Use this file to add JavaScript to your project
 
 
+function getShopData(entryID){
+    fetch('/get-sdata', {
+        method: 'POST',
+        body: JSON.stringify({entryID: entryID}),
+    }).then((_res) => {
+        window.location.href = "/"
+    })
+}
