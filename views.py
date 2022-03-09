@@ -8,19 +8,14 @@ from py import getShops
 
 views = Blueprint('views', __name__)
 
-@views.route('/', methods=['GET', 'POST'])
-@login_required
-def home():
-    if request.method == 'POST':
-        fav = request.form.get('fav')
-        
-    return render_template("/home.html", user=current_user)
 
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
     data = getShops.getShops()
-  
+    if request.method == 'POST':
+        fav = request.form.get('fav')
+        flash('AYYYYY')
     return render_template("/home.html", user=current_user, shopData = data)
 
 
