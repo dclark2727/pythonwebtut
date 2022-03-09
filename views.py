@@ -15,7 +15,7 @@ def home():
     data = getShops.getShops()
     if request.method == 'POST':
         fav = request.form.get('fav')
-        flash('AYYYYY')
+        flash('AYYYYY', category='success')
     return render_template("/home.html", user=current_user, shopData = data)
 
 
