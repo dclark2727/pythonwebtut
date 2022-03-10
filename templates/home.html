@@ -52,7 +52,7 @@
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% for row in shopData %}
                     <form method = 'POST'>
-                        <textarea type="hidden" id = "test" style="display: none;" class= "form-control" row = "{{row[0]}}" name = "{{row[1]}}" image = "{{row[2]}}" loc = "{{row[3]}}"  rating= "{{row[4]}}" reviews = "{{row[0]}}" tags = "{{row[0]}}"></textarea>
+                        <textarea type="hidden" id = "test" style="display: none;" class= "form-control" row = "{{row[0]}} + name = {{row[1]}} image = {{row[2]}} loc = {{row[3]}}  rating= {{row[4]}} reviews = {{row[0]}} tags ={{row[0]}}"></textarea>
                         <div class="col mb-5">
                             <div class="card h-100" id = 'content'>
                                 <!-- Product image-->
