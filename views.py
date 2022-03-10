@@ -15,7 +15,7 @@ def home():
     data = getShops.getShops()
     
     if request.method == 'POST':
-        fav = request.values.get()
+        fav = request.values.get('test')
         print(fav)
         flash('got it', category='success')
 
@@ -28,6 +28,7 @@ def delete_note():
     noteId = note['noteId']
     note = Note.query.get(noteId)
     if note:
+
         if note.userID == current_user.id:
             db.session.delete(note)
             db.session.commit() 
