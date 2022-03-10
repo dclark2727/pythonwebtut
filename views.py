@@ -16,6 +16,7 @@ def home():
     
     if request.method == 'POST':
         fav = request.form.get('test')
+        print(fav)
         flash('got it', category='success')
 
     return render_template("/home.html", user=current_user, shopData = data)
