@@ -35,4 +35,4 @@ def delete_note():
 @login_required
 def favorites():
 
-    return render_template("favorites.html")
+    return render_template("favorites.html", user=current_user)
