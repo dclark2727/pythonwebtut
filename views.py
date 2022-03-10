@@ -34,5 +34,5 @@ def delete_note():
 @views.route('/favorites')
 @login_required
 def favorites():
-    flash("testing", category='success')
-    return render_template("favorites.html")
+
+    return render_template("templates/favorites.html")
