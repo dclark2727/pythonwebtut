@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, jsonify, render_template, request
+from flask import Blueprint, flash, jsonify, redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from models import Note
 from __init__ import db
@@ -35,4 +35,4 @@ def delete_note():
 @login_required
 def favorites():
 
-    return render_template("/favorites.html", user = current_user)
+    return redirect(url_for('views.favorites'))
