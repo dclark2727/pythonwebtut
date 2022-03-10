@@ -52,7 +52,7 @@
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% for row in shopData %}
                     <form method = 'POST'>
-                        <input type="hidden", id = content, name = {{row[1]}}, image = {{row[2]}}, loc = {{row[3]}},  rating= {{row[4]}}, reviews = {{row[0]}}, tags = {{row[0]}}>
+                        <input type="hidden" id = content row = {{row[0]}} name = {{row[1]}} image = {{row[2]}} loc = {{row[3]}}  rating= {{row[4]}} reviews = {{row[0]}} tags = {{row[0]}}>
                         <div class="col mb-5">
                             <div class="card h-100" id = 'content'>
                                 <!-- Product image-->
@@ -73,7 +73,7 @@
                                     {% set favorite = [row[0], row[1] , row[2] , row[3] , row[4] , row[5] ,row[6]] %}
                                     {{favorite}}
                                     <div class="text-center">
-                                        <button type="submit" class="btn-outline-dark mt-auto">Add to Favorites</a>
+                                        <button type="submit" class="btn-outline-dark mt-auto" href = >Add to Favorites</a>
                                     </div>
                                 </div>
                             </div>
