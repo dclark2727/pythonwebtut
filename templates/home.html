@@ -53,12 +53,12 @@
                     {% for row in shopData %}
                     <form method = 'POST'>
                         <div class="col mb-5">
-                            <div class="card h-100">
+                            <div class="card h-100" id = 'content'>
                                 <!-- Product image-->
                                 <img class="card-img-top" src= '{{row[2]}}'' alt="..." />
                                 <!-- Product details-->
                                 <div class="card-body p-4">
-                                    <div class="text-center", id="content">
+                                    <div class="text-center">
                                         <!-- Product name-->
                                         <h5 class="fw-bolder">{{row[1]}}</h5>
                                         <!-- Product price-->
