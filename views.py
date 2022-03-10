@@ -15,7 +15,7 @@ def home():
     data = getShops.getShops()
     
     if request.method == 'POST':
-        fav = request.values.get('row')
+        fav = request.values.get()
         print(fav)
         flash('got it', category='success')
 
