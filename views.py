@@ -31,4 +31,8 @@ def delete_note():
             
     return jsonify({})
 
+@views.route('/favorites', methods = ['GET', 'POST'])
+@login_required
+def favorites():
 
+    return render_template("favorites.html", user = current_user)
