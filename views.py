@@ -35,4 +35,4 @@ def delete_note():
 @login_required
 def favorites():
     flash("testing", category='success')
-    return render_template("favorites.html"))
+    return render_template("favorites.html")
