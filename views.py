@@ -35,9 +35,9 @@ def delete_note():
 @views.route('/favorites')
 @login_required
 def favorites():
-        if request.method == 'POST':
-            fav = request.values.get('test')
-            print(fav)
-            flash('got it', category='success')
+    if request.method == 'POST':
+        fav = request.values.get('test')
+        print(fav)
+        flash('got it', category='success')
     return render_template("favorites.html", user=current_user)
 
