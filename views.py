@@ -41,8 +41,8 @@ def favorites():
 @views.route('/add_favorites')
 @login_required
 def add_favorites():
-    
-    print('ayyyy')
-    
+    if request.method == ['POST']:
+        a = request.get_data()
+        print(a)
     return redirect(url_for("views.home"))
 
