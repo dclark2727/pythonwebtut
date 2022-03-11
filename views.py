@@ -42,7 +42,8 @@ def favorites():
 @login_required
 def add_favorites():
     if request.method == ['POST']:
-        a = request.form.get('test')
+        a = request.form.get('content')
+        print('apple')
         print(a)
     return redirect(url_for("views.home"))
 
