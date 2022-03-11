@@ -45,5 +45,5 @@ def add_favorites():
         a = request.form.get(["test"])
         print('apple')
         print(a)
-    return redirect(url_for("views.home"))
+    return redirect(url_for("home"))
 
