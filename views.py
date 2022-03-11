@@ -35,9 +35,13 @@ def delete_note():
 @views.route('/favorites')
 @login_required
 def favorites():
-    if request.method == 'POST':
-        fav = request.values.get('test')
-        print(fav)
-        flash('got it', category='success')
+ 
     return render_template("/favorites.html", user=current_user)
+
+@views.route('/add-favorite', methods = ['POST'])
+@login_required
+def addFavorite():
+    print('ayyyy')
+    
+    return redirect(url_for("view.home")
 
