@@ -38,11 +38,11 @@ def favorites():
  
     return render_template("/favorites.html", user=current_user)
 
-@views.route('/add_favorites', methods = ['POST'])
+@views.route('/add_favorites')
 @login_required
 def add_favorites():
-    if request.method == 'POST':
-        print('ayyyy')
+    
+    print('ayyyy')
     
     return redirect(url_for("views.home"))
 
