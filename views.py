@@ -43,5 +43,5 @@ def favorites():
 def addFavorite():
     print('ayyyy')
     
-    return redirect(url_for("view.home")
+    return redirect(url_for("view.home"))
 
