@@ -39,5 +39,5 @@ def favorites():
         fav = request.values.get('test')
         print(fav)
         flash('got it', category='success')
-    return render_template("favorites.html", user=current_user)
+    return render_template("/favorites.html", user=current_user)
 
