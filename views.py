@@ -14,10 +14,7 @@ views = Blueprint('views', __name__)
 def home():
     data = getShops.getShops()
     
-    if request.method == 'POST':
-        fav = request.values.get('test')
-        print(fav)
-        flash('got it', category='success')
+   
 
     return render_template("/home.html", user=current_user, shopData = data)
 
@@ -38,6 +35,9 @@ def delete_note():
 @views.route('/favorites')
 @login_required
 def favorites():
-
+        if request.method == 'POST':
+            fav = request.values.get('test')
+            print(fav)
+            flash('got it', category='success')
     return render_template("favorites.html", user=current_user)
 
