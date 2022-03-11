@@ -46,4 +46,6 @@ def add_favorites():
         print('apple')
         print(a)
         return redirect(url_for("views.home"))
-    return 
+    return jsonify({})
+
+
