@@ -12,7 +12,6 @@ def getShops():
         c =  connector.cursor() 
         
         query = "SELECT * FROM shops"
-        print(query)
         c.execute(query)
         shops = c.fetchall()
     
