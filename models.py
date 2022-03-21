@@ -15,4 +15,15 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     firstName = db.Column(db.String(150))
     notes = db.relationship('Note')
+    favorites = db.relationship('Favorite')
+
+class Favorite(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(150), unique = True)
+    image = db.Column(db.String(150))
+    loc = db.Column(db.String(150))
+    rating = db.Column(db.String(150))
+    reviews = db.Column(db.String(150))
+    tag = db.Column(db.String(150))
+    userID = db.Column(db.Integer, db.ForeignKey('user.id'))
 
