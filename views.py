@@ -38,10 +38,10 @@ def favorites():
  
     return render_template("/favorites.html", user=current_user)
 
-@views.route('/add_favorites')
+@views.route('/add_favorites', methods=['POST'])
 @login_required
 def add_favorites():
-    if request.method == ['POST']:
+    if request.method == 'POST':
         a = request.form["test"]
         print('apple')
         print(a)
