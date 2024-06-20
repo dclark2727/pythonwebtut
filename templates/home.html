@@ -3,141 +3,118 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Cafe Companion Home</title>
+        <meta name="description" content="Café Companion - Find local coffee around Chicago" />
+        <meta name="author" content="Café Companion" />
+        <title>Café Companion Home</title>
         <!-- Favicon-->
-        <link href= "/static/css/styles.css" rel = "stylesheet" />
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
+        <!-- Bootstrap CSS and Icons-->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous"
-      />
-      <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        crossorigin="anonymous"
-      />  
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <!-- Custom CSS-->
+        <link href="/static/css/styles.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-            <a class="navbar-brand" href = "/">Café Companion</a>
+            <a class="navbar-brand" href="/">Café Companion</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-              <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar">
-              <div class="navbar-nav">
-                {% if user.is_authenticated %}
-                <a class="nav-item nav-link" id="home" href="/">Home</a>
-                <a class="nav-item nav-link" id="favorites" href="/favorites">Favorites</a>
-                <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                {% else %}
-                <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
-                {% endif %}
-              </div>
+                <div class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <a class="nav-item nav-link" id="home" href="/">Home</a>
+                        <a class="nav-item nav-link" id="favorites" href="/favorites">Favorites</a>
+                        <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                    {% else %}
+                        <a class="nav-item nav-link" id="login" href="/login">Login</a>
+                        <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                    {% endif %}
+                </div>
             </div>
-          </nav>
-          {% with messages = get_flashed_messages(with_categories=true) %} {% if
-            messages %} {% for category, message in messages %} {% if category ==
-            'error' %}
-            <div class="alert alert-danger alter-dismissable fade show" role="alert">
-              {{ message }}
-              <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            {% else %}
-            <div class="alert alert-success alter-dismissable fade show" role="alert">
-              {{ message }}
-              <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            {% endif %} {% endfor %} {% endif %} {% endwith %}
-        {% block header %}
+        </nav>
+        
+        <!-- Flash Messages-->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
         <!-- Header-->
-        <header class="bg-dark py-5">
+        {% block header %}
+        <header class="bg-dark py-5" style="background-image: url('static/assets/backdrop.jpg'); background-size: 110%; background-position: center; color: rgba(0, 0, 0, 0.8);">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-dark-grey">
+                <div class="text-center">
                     <h1 class="display-4 fw-bolder">Find local coffee around Chicago</h1>
-                    <p class="lead fw-normal text-dark-grey-50 mb-0">Favorite the shops below so you always know where to go for your daily cup of joe!</p>
+                    <p class="lead fw-normal text-muted mb-0">Favorite the shops below so you always know where to go for your daily cup of joe!</p>
                 </div>
             </div>
         </header>
         {% endblock %}
+        
+        
+        
         <!-- Section-->
         {% block content %}
-        <section class="py-5">
+        <section class="py-5" style="background-color: rgb(252, 250, 245);">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% for row in shopData %}
-                    <form method = 'POST' action = 'add_favorites'>
-                        <input type="hidden" name = "id"  value = "{{row[0]}}" />
-                        <input type="hidden" name = "name"  value = "{{row[1]}}" />
-                        <input type="hidden" name = "image"  value = "{{row[2]}}" />
-                        <input type="hidden" name = "loc"  value = "{{row[3]}}" />
-                        <input type="hidden" name = "rating"  value = "{{row[4]}}" />
-                        <input type="hidden" name = "reviews"  value = "{{row[5]}}" />
-                        <input type="hidden" name = "tags"  value = "{{row[6]}}" />
-                        <div class="col mb-5">
-                            <div class="card h-100" id = 'content'>
+                    <form method="POST" action="add_favorites">
+                        <input type="hidden" name="id" value="{{ row[0] }}" />
+                        <input type="hidden" name="name" value="{{ row[1] }}" />
+                        <input type="hidden" name="image" value="{{ row[2] }}" />
+                        <input type="hidden" name="loc" value="{{ row[3] }}" />
+                        <input type="hidden" name="rating" value="{{ row[4] }}" />
+                        <input type="hidden" name="reviews" value="{{ row[5] }}" />
+                        <input type="hidden" name="tags" value="{{ row[6] }}" />
+                        <div class="col mb-5 d-flex">
+                            <div class="card h-100 w-100 d-flex flex-column">
                                 <!-- Product image-->
-                                <img class="card-img-top" src= '{{row[2]}}' alt="..." />
+                                <img class="card-img-top" src="{{ row[2] }}" alt="Image of {{ row[1] }}" style="flex: 1;">
                                 <!-- Product details-->
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-                                        <!-- Product name-->
-                                        <h5 class="fw-bolder">{{row[1]}}</h5>
-                                        <!-- Product price-->
-                                        {{row[4]}}:  {{row[5]}} Reviews<br>
-                                        Location: {{row[3]}} <br>
-                                        <span class="badge rounded-pill bg-secondary">{{row[6]}}</span>
-                                    </div>
+                                <div class="card-body p-4 text-center" style="background-color: rgb(252, 250, 245);" >
+                                    <h5 class="fw-bolder">{{ row[1] }}</h5>
+                                    <p>{{ row[4] }}: {{ row[5] }} Reviews<br>Location: {{ row[3] }}</p>
+                                    <span class="badge rounded-pill bg-secondary" style="background-color: rgb(252, 250, 245);">{{ row[6] }}</span>
                                 </div>
                                 <!-- Product actions-->
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center">
-                                        <input type="submit" value = 'Add to Favorites' class="btn btn-outline-secondary" aria-pressed="true">
-                                    </div>
+                                <div class="card-footer p-4 pt-0 border-top-0 text-center mt-auto" style="background-color: rgb(252, 250, 245);">
+                                    <input type="submit" value="Add to Favorites" class="btn btn-outline-secondary" aria-pressed="true">
                                 </div>
                             </div>
                         </div>
-                    </form>    
+                    </form>
                     {% endfor %}
                 </div>
             </div>
         </section>
         {% endblock %}
+        
+        
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Café Companion 2022</p></div>
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Café Companion 2022</p>
+            </div>
         </footer>
-        <!-- Bootstrap core JS-->
+        
+        <!-- Bootstrap JS, jQuery, and Popper.js-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"
-         ></script>
-        <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"
-         ></script>
-        <script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"
-        ></script>
-        <!-- Core theme JS-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <!-- Custom JS-->
         <script src="./scripts.js"></script>
     </body>
 </html>
-
