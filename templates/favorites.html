@@ -1,4 +1,5 @@
 {% extends "home.html" %}
+
 {% block header %}
 <header class="bg-dark py-5">
   <div class="container px-4 px-lg-5 my-5">
@@ -9,50 +10,42 @@
   </div>
 </header>
 {% endblock %}
+
 {% block content %}
 <section class="py-5">
   <div class="container px-4 px-lg-5 mt-5">
       <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
           {% for row in favData %}
-          <form method = 'POST' action = 'delete_favorites'>
-            <input type="hidden" name = "id"  value = "{{row[0]}}" />
+          <form method="POST" action="delete_favorites">
+              <input type="hidden" name="id" value="{{ row[0] }}" />
               <div class="col mb-5">
-                  <div class="card h-100" id = 'content'>
+                  <div class="card h-100" id="content">
                       <!-- Product image-->
-                      <img class="card-img-top" src= '{{row[2]}}' alt="..." />
+                      <img class="card-img-top" src="{{ row[2] }}" alt="Image of {{ row[1] }}" />
                       <!-- Product details-->
                       <div class="card-body p-4">
                           <div class="text-center">
                               <!-- Product name-->
-                              <h5 class="fw-bolder">{{row[1]}}</h5>
-                              <!-- Product price-->
-                              {{row[4]}}:  {{row[5]}} Reviews<br>
-                              Location: {{row[3]}} <br>
-                              <span class="badge rounded-pill bg-secondary">{{row[6]}}</span>
+                              <h5 class="fw-bolder">{{ row[1] }}</h5>
+                              <!-- Product rating and reviews-->
+                              <p>{{ row[4] }}: {{ row[5] }} Reviews</p>
+                              <!-- Product location-->
+                              <p>Location: {{ row[3] }}</p>
+                              <!-- Product tags-->
+                              <span class="badge rounded-pill bg-secondary">{{ row[6] }}</span>
                           </div>
                       </div>
                       <!-- Product actions-->
                       <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                           <div class="text-center">
-                              <input type="submit" value = 'Remove from Favorites' class="btn btn-outline-secondary" aria-pressed="true" >
+                              <input type="submit" value="Remove from Favorites" class="btn btn-outline-secondary" aria-pressed="true">
                           </div>
                       </div>
                   </div>
               </div>
-          </form>    
+          </form>
           {% endfor %}
       </div>
   </div>
 </section>
 {% endblock %}
-
-
-
-
-<!-- 
-<ul class="list-group">
-  {% for row in favData %}
-  <li class="list-group-item">{{row}}</li>
-  {% endfor %}
-</ul>
-{{favData}} -->
